@@ -42,6 +42,7 @@ public class Anlage {
 		restWert = Math.floor(initialWert/nutzungsdauer * (nutzungsdauer-alter));
 		}
 	}
+	
 	public void simulate(int maxJahre,double minWert){
 		int i = 1;
 		while (restWert > 0 && restWert > minWert && i <= maxJahre){
@@ -51,6 +52,7 @@ public class Anlage {
 		i++;
 		}
 	}
+	
 	public void renew(int zusatzWert, int zusatzJahre){
 	  initialWert = restWert + zusatzWert;
 	  restWert = initialWert;
