@@ -2,61 +2,71 @@ package erp;
 
 public class Anlage {
 
-	private String Bezeichnung;
+	private String bezeichnung;
 	private double initialWert;
 	private int nutzungsdauer;
 	private double restWert;
 	private int alter;
-	
-	public Anlage(String Bezeichnung, double Wert, int dauer){
-		this.Bezeichnung = Bezeichnung;
-		initialWert = Wert;
+
+	public Anlage(String bezeichnung, double wert, int dauer) 
+	{
+		this.bezeichnung = bezeichnung;
+		initialWert = wert;
 		nutzungsdauer = dauer;
-		restWert = Wert;
+		restWert = wert;
 		alter = 0;
 	}
 
-	public String getBezeichnung() {
-		return Bezeichnung;
+	public String getbezeichnung() 
+	{
+		return bezeichnung;
 	}
 
-	public double getInitialWert() {
+	public double getInitialWert() 
+	{
 		return initialWert;
 	}
 
-	public int getNutzungsdauer() {
+	public int getNutzungsdauer() 
+	{
 		return nutzungsdauer;
 	}
 
-	public double getRestWert() {
+	public double getRestWert() 
+	{
 		return restWert;
 	}
 
-	public int getAlter() {
+	public int getAlter() 
+	{
 		return alter;
 	}
-	
-	public void abschreiben(){
+
+	public void abschreiben() 
+	{
 		alter++;
-		if (alter <= nutzungsdauer){
-		restWert = Math.floor(initialWert/nutzungsdauer * (nutzungsdauer-alter));
+		if (alter <= nutzungsdauer) 
+		{
+			restWert = Math.floor(initialWert / nutzungsdauer * (nutzungsdauer - alter));
 		}
 	}
-	
-	public void simulate(int maxJahre,double minWert){
+
+	public void simulate(int maxJahre, double minWert) 
+	{
 		int i = 1;
-		while (restWert > 0 && restWert > minWert && i <= maxJahre){
-		System.out.println(alter+": "+restWert);
-		this.abschreiben();
-		System.out.println(alter+": "+restWert);
-		i++;
+		while (restWert > 0 && restWert > minWert && i <= maxJahre) 
+		{
+			System.out.println(alter + ": " + restWert);
+			this.abschreiben();
+			System.out.println(alter + ": " + restWert);
+			i++;
 		}
 	}
-	
-	public void renew(int zusatzWert, int zusatzJahre){
-	  initialWert = restWert + zusatzWert;
-	  restWert = initialWert;
-	  nutzungsdauer= nutzungsdauer-alter+zusatzJahre;
+
+	public Anlage renew(int zusatzWert, int zusatzJahre) 
+	{
+		Anlage newAnlage = new Anlage(bezeichnung,getRestWert()+zusatzWert,getNutzungsdauer()-getAlter()+zusatzJahre);
+		return newAnlage;
 	}
-	
+
 }

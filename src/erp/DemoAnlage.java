@@ -20,6 +20,9 @@ public class DemoAnlage {
 		System.out.println(Laptop.getNutzungsdauer());
 		System.out.println(Laptop.getRestWert());
 		*/
-		Laptop.simulate(4, 100);
+		Laptop.simulate(5, 340);
+		Anlage Laptop2 =Laptop.renew(1380, 2);
+		
+		System.out.println(Laptop2.getRestWert());
 	}
 }
