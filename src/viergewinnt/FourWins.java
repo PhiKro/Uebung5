@@ -65,7 +65,7 @@ public class FourWins {
 	}
 	private char fourInRow()
 	{
-		int stringpos =1;
+		int stringpos =0;
 		for (int i = 0;i< Spielfeld.length;i++)
 		{
 			for (int r=0; r<Spielfeld[i].length;r++)
@@ -82,7 +82,20 @@ public class FourWins {
 				else
 				{
 			reihe = "";	
-			stringpos =1;
+			stringpos =0;
+				}
+				if (stringpos==1|| stringpos ==0)
+				{
+					continue;
+				}
+				else if (reihe.charAt(stringpos-2)==reihe.charAt(stringpos-1))
+				{
+					continue;
+				}
+				else
+				{
+					reihe = "";	
+					stringpos =0;
 				}
 			}
 		}
@@ -90,6 +103,7 @@ public class FourWins {
 	}
 	private char fourInLine()
 	{
+		int stringpos =0;
 		for (int i = 0;i< Spielfeld.length;i++)
 		{
 			for (int r=0; r<Spielfeld[i].length;r++)
@@ -102,10 +116,25 @@ public class FourWins {
 				else if(Spielfeld[r][i]=='A'||Spielfeld[r][i]=='B')
 				{
 					reihe=reihe+Spielfeld[r][i];
+					stringpos++;
 				}
 				else
 				{			
 					reihe = "";
+					stringpos=0;
+				}
+				if (stringpos==1 || stringpos ==0)
+				{
+					continue;
+				}
+				else if (reihe.charAt(stringpos-1)==reihe.charAt(stringpos-2))
+				{
+					continue;
+				}
+				else
+				{
+					reihe = "";	
+					stringpos =0;
 				}
 			}	
 		}

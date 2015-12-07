@@ -1,7 +1,6 @@
-package viergewinnt;
+package viergewinnt2;
 
 public class Demo {
-
 	public static void main (String Args[])
 	{
 		FourWins Spiel1 =new FourWins(6,6);
