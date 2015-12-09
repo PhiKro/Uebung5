@@ -16,6 +16,13 @@ public class FourWins {
 			this.Spielfeld = new char[sizeX][sizeY];
 			this.sizeX =sizeX;
 			this.sizeY =sizeY;
+			for (int i=0;i<Spielfeld.length;i++)
+			{
+				for (int r=0;r<Spielfeld.length;r++)
+				{
+					Spielfeld[i][r]=' ';
+				}
+			}
 		}	
 		else 
 		{
@@ -39,29 +46,35 @@ public class FourWins {
 		this.sizeY = sizeY;
 	}
 
-	public boolean playerA(int x, int y)
+	public boolean playerA(int x)
 	{
-		if (Spielfeld[x][y]=='\u0000')
-		{
-			Spielfeld[x][y]='A';
-			return true;
+		for (int i =Spielfeld[x].length-1;i>=0;i--){
+			if (Spielfeld[i][x]==' ')
+			{
+				Spielfeld[i][x]='A';
+				return true;
+			}
+			else 
+			{
+				continue;
+			}
 		}
-		else 
-		{
-			return false;
-		}
+		return false;
 	}
-	public boolean playerB(int x, int y)
+	public boolean playerB(int x)
 	{
-		if (Spielfeld[x][y]=='\u0000')
-		{
-			Spielfeld[x][y]='B';
-			return true;
+		for (int i =Spielfeld[x].length-1;i>=0;i--){
+			if (Spielfeld[i][x]==' ')
+			{
+				Spielfeld[i][x]='B';
+				return true;
+			}
+			else 
+			{
+				continue;
+			}	
 		}
-		else 
-		{
-			return false;
-		}	
+		return false;
 	}
 	private char fourInRow()
 	{
@@ -76,13 +89,13 @@ public class FourWins {
 				}
 				else if (Spielfeld[i][r]=='A'||Spielfeld[i][r]=='B')
 				{
-				reihe=reihe+Spielfeld[i][r];
-				stringpos++;
+					reihe=reihe+Spielfeld[i][r];
+					stringpos++;
 				}
 				else
 				{
-			reihe = "";	
-			stringpos =0;
+					reihe = "";	
+					stringpos =0;
 				}
 				if (stringpos==1|| stringpos ==0)
 				{
@@ -95,7 +108,8 @@ public class FourWins {
 				else
 				{
 					reihe = "";	
-					stringpos =0;
+					reihe = reihe+Spielfeld[i][r];
+					stringpos =1;
 				}
 			}
 		}
@@ -112,7 +126,7 @@ public class FourWins {
 				{
 					return reihe.charAt(0);
 				}
-				
+
 				else if(Spielfeld[r][i]=='A'||Spielfeld[r][i]=='B')
 				{
 					reihe=reihe+Spielfeld[r][i];
@@ -134,42 +148,43 @@ public class FourWins {
 				else
 				{
 					reihe = "";	
-					stringpos =0;
+					reihe = reihe+Spielfeld[i][r];
+					stringpos =1;
 				}
 			}	
 		}
 		return '-';
 	}
-		public char winner()
-		{
-			line = fourInLine();
-			row = fourInRow();
+	public char winner()
+	{
+		line = fourInLine();
+		row = fourInRow();
 
-			if (row =='A'||row =='B')
-			{
-				return row;
-			}
-			else if (line =='A' || line =='B')
-			{
-				return line;
-			}
-			else 
-			{
-				return '-';
-			}
+		if (row =='A'||row =='B')
+		{
+			return row;
 		}
-
-		public void printSpielfeld()
+		else if (line =='A' || line =='B')
 		{
-			for (int i =0;i<Spielfeld.length; i++)
-			{
-				for (int j=0;j<Spielfeld[i].length;j++)
-				{
-					System.out.print(Spielfeld[i][j]+",");
-				}
-				System.out.println("");
-			}
+			return line;
+		}
+		else 
+		{
+			return '-';
 		}
 	}
+
+	public void printSpielfeld()
+	{
+		for (int i =0;i<Spielfeld.length; i++)
+		{
+			for (int j=0;j<Spielfeld[i].length;j++)
+			{
+				System.out.print(Spielfeld[i][j]+",");
+			}
+			System.out.println("");
+		}
+	}
+}
 
 

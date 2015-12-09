@@ -15,6 +15,13 @@ public class FourWins {
 			this.Spielfeld = new char[sizeX][sizeY];
 			this.sizeX =sizeX;
 			this.sizeY =sizeY;
+			for (int i=0;i<Spielfeld.length;i++)
+			{
+				for (int r=0;r<Spielfeld.length;r++)
+				{
+					Spielfeld[i][r]=' ';
+				}
+			}
 		}	
 		else 
 		{
@@ -38,126 +45,144 @@ public class FourWins {
 		this.sizeY = sizeY;
 	}
 
-	public boolean playerA(int x, int y)
+	public boolean playerA(int x)
 	{
-		if (Spielfeld[x][y]=='\u0000')
+		for (int i =Spielfeld[x].length-1;i>=0;i--)
 		{
-			Spielfeld[x][y]='A';
-			return true;
-		}
-		else 
-		{
-			return false;
-		}
-	}
-	public boolean playerB(int x, int y)
-	{
-		if (Spielfeld[x][y]=='\u0000')
-		{
-			Spielfeld[x][y]='B';
-			return true;
-		}
-		else 
-		{
-			return false;
-		}	
-	}	
-		public char winner()
-		{
-			line = fourInLine();
-			row = fourInRow();
-
-			if (row =='A'||row =='B')
+			if (Spielfeld[i][x]==' ')
 			{
-				return row;
-			}
-			else if (line =='A' || line =='B')
-			{
-				return line;
+				Spielfeld[i][x]='A';
+				return true;
 			}
 			else 
 			{
-				return '-';
+				continue;
 			}
 		}
-
-		public void printSpielfeld()
+		return false;
+	}
+	public boolean playerB(int x)
+	{
+		for (int i =Spielfeld[x].length-1;i>=0;i--)
 		{
-			for (int i =0;i<Spielfeld.length; i++)
+			if (Spielfeld[i][x]==' ')
 			{
-				for (int j=0;j<Spielfeld[i].length;j++)
-				{
-					System.out.print(Spielfeld[i][j]+",");
-				}
-				System.out.println("");
+				Spielfeld[i][x]='B';
+				return true;
 			}
+			else 
+			{
+				continue;
+			}	
 		}
-		
-		public char fourInLine()
-		{
-			int playerA=0;
-			int playerB=0;
+		return false;
+	}
+	public char winner()
+	{
+		line = fourInColum();
+		row = fourInRow();
 
-			for (int i = 0;i< Spielfeld.length;i++)
-			{
-				for (int r=0; r<Spielfeld[i].length;r++)
-				{					
-					if (playerA==4)
-					{
-						return 'A';
-					}
-					else if (playerB==4)
-					{
-						return 'B';
-					}
-					if(Spielfeld[r][i]=='A')
-					{
-						playerB=0;
-						playerA++;
-					}
-					else if (Spielfeld[r][i]=='B')
-					{
-						playerA=0;
-						playerB++;
-					}
-				}
-				playerA=0;
-				playerB=0;
-			}
-			return '-';
+		if (row =='A'||row =='B')
+		{
+			return row;
 		}
-		
-		public char fourInRow()
+		else if (line =='A' || line =='B')
 		{
-			int playerA=0;
-			int playerB=0;
-
-			for (int i = 0;i< Spielfeld.length;i++)
-			{
-				for (int r=0; r<Spielfeld[i].length;r++)
-				{					
-					if (playerA==4)
-					{
-						return 'A';
-					}
-					else if (playerB==4)
-					{
-						return 'B';
-					}
-					if(Spielfeld[i][r]=='A')
-					{
-						playerB=0;
-						playerA++;
-					}
-					else if (Spielfeld[i][r]=='B')
-					{
-						playerA=0;
-						playerB++;
-					}
-				}
-				playerA=0;
-				playerB=0;
-			}
+			return line;
+		}
+		else 
+		{
 			return '-';
 		}
 	}
+
+	public void printSpielfeld()
+	{
+		for (int i =0;i<Spielfeld.length; i++)
+		{
+			for (int j=0;j<Spielfeld[i].length;j++)
+			{
+				System.out.print(Spielfeld[i][j]+",");
+			}
+			System.out.println("");
+		}
+	}
+
+	public char fourInColum()
+	{
+		int playerA=0;
+		int playerB=0;
+
+		for (int i = 0;i< Spielfeld.length;i++)
+		{
+			for (int r=0; r<Spielfeld[i].length;r++)
+			{					
+				if (playerA==4)
+				{
+					return 'A';
+				}
+				else if (playerB==4)
+				{
+					return 'B';
+				}
+				if(Spielfeld[r][i]=='A')
+				{
+					playerB=0;
+					playerA++;
+				}
+				else if (Spielfeld[r][i]=='B')
+				{
+					playerA=0;
+					playerB++;
+				}
+				else
+				{
+					playerA=0;
+					playerB=0;
+				}
+			}
+			playerA=0;
+			playerB=0;
+		}
+		return '-';
+	}
+
+	public char fourInRow()
+	{
+		int playerA=0;
+		int playerB=0;
+
+		for (int i = 0;i< Spielfeld.length;i++)
+		{
+			for (int r=0; r<Spielfeld[i].length;r++)
+			{					
+				if (playerA==4)
+				{
+					return 'A';
+				}
+				else if (playerB==4)
+				{
+					return 'B';
+				}
+				if(Spielfeld[i][r]=='A')
+				{
+					playerB=0;
+					playerA++;
+				}
+				else if (Spielfeld[i][r]=='B')
+				{
+					playerA=0;
+					playerB++;
+				}
+				else
+				{
+					playerA=0;
+					playerB=0;
+				}
+			}
+			playerA=0;
+			playerB=0;
+		}
+		return '-';
+	}
+}

@@ -78,20 +78,16 @@ public class Verwaltungsstrafe {
 	}
 	public double getStrafe()
 	{
-		if (anzahl==1)
+		int i=anzahl;
+		switch(i)
 		{
+		case 1:
 			return strafe-(strafe*0.30);
-		}
-		else if (anzahl==2)
-		{
+		case 2:
 			return strafe-(strafe*0.20);
-		}
-		else if (anzahl==3)
-		{
-			return strafe-(strafe*0.30);
-		}
-		else
-		{
+		case 3:
+			return strafe-(strafe*0.10);
+		default:
 			return strafe;
 		}
 	}
