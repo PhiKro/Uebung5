@@ -13,7 +13,7 @@ public class FourWins {
 	{
 		if(sizeX >=4 && sizeY>=4)
 		{
-			this.Spielfeld = new char[sizeX][sizeY];
+			Spielfeld = new char[sizeX][sizeY];
 			this.sizeX =sizeX;
 			this.sizeY =sizeY;
 			for (int i=0;i<Spielfeld.length;i++)
